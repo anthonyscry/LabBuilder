@@ -313,6 +313,14 @@ function Invoke-BlowAway {
         } elseif (Hyper-V\Get-VM -Name $vmName -ErrorAction SilentlyContinue) {
             Write-Host "    [WARN] Could not fully remove VM $vmName. Reboot host, then run blow-away again." -ForegroundColor Yellow
         }
+
+        $ghostCheck = Hyper-V\Get-VM -Name 'LIN1' -ErrorAction SilentlyContinue
+        if (-not $ghostCheck) {
+            Write-Host "    [OK] PowerShell confirms LIN1 is not present." -ForegroundColor Green
+        }
+
+        Write-Host "    [NOTE] If Hyper-V Manager still shows LIN1 now, reboot the host to clear VMMS cache." -ForegroundColor DarkGray
+        Write-Host "           Then open Hyper-V Manager and refresh the server node." -ForegroundColor DarkGray
     }
 
     $remainingLabVms = foreach ($vmName in $LabVMs) {
@@ -462,6 +470,7 @@ function Show-Menu {
     Write-Host "   [B] Bootstrap + Deploy" -ForegroundColor White
     Write-Host "   [D] Deploy only" -ForegroundColor White
     Write-Host "   [I] Install Desktop Shortcuts" -ForegroundColor White
+    Write-Host "   [L] Configure LIN1 SSH (post-deploy)" -ForegroundColor White
     Write-Host ""
     Write-Host "  DAILY" -ForegroundColor DarkCyan
     Write-Host "   [H] Health Gate" -ForegroundColor White
