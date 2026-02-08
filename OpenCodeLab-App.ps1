@@ -15,6 +15,7 @@ param(
         'preflight',
         'bootstrap',
         'deploy',
+        'lin1-install',
         'lin1-config',
         'health',
         'start',
@@ -312,6 +313,14 @@ function Invoke-BlowAway {
         } elseif (Hyper-V\Get-VM -Name $vmName -ErrorAction SilentlyContinue) {
             Write-Host "    [WARN] Could not fully remove VM $vmName. Reboot host, then run blow-away again." -ForegroundColor Yellow
         }
+
+        $ghostCheck = Hyper-V\Get-VM -Name 'LIN1' -ErrorAction SilentlyContinue
+        if (-not $ghostCheck) {
+            Write-Host "    [OK] PowerShell confirms LIN1 is not present." -ForegroundColor Green
+        }
+
+        Write-Host "    [NOTE] If Hyper-V Manager still shows LIN1 now, reboot the host to clear VMMS cache." -ForegroundColor DarkGray
+        Write-Host "           Then open Hyper-V Manager and refresh the server node." -ForegroundColor DarkGray
     }
 
     $remainingLabVms = foreach ($vmName in $LabVMs) {
@@ -452,7 +461,12 @@ function Show-Menu {
     Write-Host "  =============================================" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "  SETUP" -ForegroundColor DarkCyan
-    Write-Host "   [A] One-Button Setup (bootstrap + deploy + start + status)" -ForegroundColor Green
+    Write-Host "   [A] 1) One-Button Setup (bootstrap + deploy + start + status)" -ForegroundColor Green
+    Write-Host "   [N] 2) Install LIN1 (post-deploy, one-click)" -ForegroundColor White
+    Write-Host "   [L] 3) Configure LIN1 SSH (post-deploy)" -ForegroundColor White
+    Write-Host "   [H] 4) Health Gate (verify)" -ForegroundColor White
+    Write-Host ""
+    Write-Host "  ADVANCED / MANUAL" -ForegroundColor DarkCyan
     Write-Host "   [B] Bootstrap + Deploy" -ForegroundColor White
     Write-Host "   [D] Deploy only" -ForegroundColor White
     Write-Host "   [I] Install Desktop Shortcuts" -ForegroundColor White
@@ -487,6 +501,7 @@ function Invoke-InteractiveMenu {
             'B' { Invoke-RepoScript -BaseName 'Bootstrap'; Read-Host "`n  Press Enter to continue" | Out-Null }
             'D' { Invoke-RepoScript -BaseName 'Deploy'; Read-Host "`n  Press Enter to continue" | Out-Null }
             'I' { Invoke-RepoScript -BaseName 'Create-DesktopShortcuts'; Read-Host "`n  Press Enter to continue" | Out-Null }
+            'N' { Invoke-RepoScript -BaseName 'Install-LIN1'; Read-Host "`n  Press Enter to continue" | Out-Null }
             'L' { Invoke-RepoScript -BaseName 'Configure-LIN1'; Read-Host "`n  Press Enter to continue" | Out-Null }
             'H' { Invoke-RepoScript -BaseName 'Test-OpenCodeLabHealth'; Read-Host "`n  Press Enter to continue" | Out-Null }
             '1' { Invoke-RepoScript -BaseName 'Start-LabDay'; Read-Host "`n  Press Enter to continue" | Out-Null }
@@ -563,6 +578,11 @@ try {
             $deployArgs = @()
             if ($NonInteractive) { $deployArgs += '-NonInteractive' }
             Invoke-RepoScript -BaseName 'Deploy' -Arguments $deployArgs
+        }
+        'lin1-install' {
+            $linInstallArgs = @()
+            if ($NonInteractive) { $linInstallArgs += '-NonInteractive' }
+            Invoke-RepoScript -BaseName 'Install-LIN1' -Arguments $linInstallArgs
         }
         'lin1-config' {
             $linArgs = @()

@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.7.4 - Reordered Menu with Numbered Execution Flow
+
+### Changes
+- Reordered setup menu options in `OpenCodeLab-App.ps1` to show recommended execution flow in numbered order.
+- Added README menu key quick-order list (`A` -> `N` -> `L` -> `H`).
+
+## v1.7.3 - Separate One-Click LIN1 Install Menu Option
+
+### Changes
+- Added `Install-LIN1.ps1` for post-deploy LIN1 VM creation + SSH-ready wait + automatic handoff to `Configure-LIN1.ps1`.
+- Added new app action/menu entry `lin1-install` / `[N] Install LIN1 (post-deploy, one-click)`.
+- Updated README run order and commands for separate one-click LIN1 install then one-click LIN1 SSH configuration.
+
 ## v1.7.2 - Add Numbered End-to-End Run Order
 
 ### Changes

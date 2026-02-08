@@ -90,6 +90,12 @@ $env:OPENCODELAB_ADMIN_PASSWORD = "Server123!"
 .\OpenCodeLab-App.ps1 -Action one-button-setup -NonInteractive
 ```
 
+One-click install LIN1 after core lab deploy:
+
+```powershell
+.\OpenCodeLab-App.ps1 -Action lin1-install
+```
+
 Configure LIN1 SSH after deploy:
 
 ```powershell
@@ -176,6 +182,13 @@ To include LIN1 in the same run:
 
 ## Recommended Run Order (Numbered)
 
+### Menu quick order (keys)
+
+1. `A` = One-Button Setup
+2. `N` = Install LIN1 (post-deploy)
+3. `L` = Configure LIN1 SSH (post-deploy)
+4. `H` = Health Gate
+
 Use this exact order:
 
 1. **Optional clean slate**
@@ -191,13 +204,17 @@ Use this exact order:
    .\OpenCodeLab-App.ps1 -Action start
    .\OpenCodeLab-App.ps1 -Action health
    ```
-4. **(Optional) Include LIN1 in full deploy run**
+4. **One-click install LIN1 after core deploy**
    ```powershell
-   .\Deploy.ps1 -IncludeLIN1
+   .\OpenCodeLab-App.ps1 -Action lin1-install
    ```
 5. **One-click LIN1 SSH config after LIN1 exists**
    ```powershell
    .\OpenCodeLab-App.ps1 -Action lin1-config
+   ```
+6. **(Optional advanced) include LIN1 during full deploy run**
+   ```powershell
+   .\Deploy.ps1 -IncludeLIN1
    ```
 
 ### Important
