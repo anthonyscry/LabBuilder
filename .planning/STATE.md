@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-02-20)
 ## Current Position
 
 Phase: 28 of 29 (ADMX / GPO Auto-Import)
-Plan: 3 of 4 (GPO JSON Templates and Baseline Creation)
-Status: Plan 03 complete
-Last activity: 2026-02-21 — Phase 28 Plan 03 complete (GPO templates, ConvertTo-DomainDN, GPO creation logic, 8 tests passing)
+Plan: 4 of 4 (PostInstall Integration and Final Testing)
+Status: Phase 28 complete
+Last activity: 2026-02-21 — Phase 28 complete (ADMX/GPO PostInstall integration, 39 tests passing)
 
-Progress: [█████░░░░░] 40% (v1.6)
+Progress: [█████░░░░░] 45% (v1.6)
 
 ## Performance Metrics
 
@@ -58,6 +58,11 @@ Full log in PROJECT.md Key Decisions table. Key decisions for v1.6:
 - [Phase 28-03]: Invoke-LabADMXImport extended with GPO creation logic using New-GPO, Set-GPRegistryValue, New-GPLink
 - [Phase 28-03]: GPO creation gated by CreateBaselineGPO config flag; templates loaded from <repoRoot>/Templates/GPO/*.json
 - [Phase 28-03]: Per-template error isolation; GPOs counted in FilesImported metric
+- [Phase 28-04]: ADMX/GPO operations integrated into DC.ps1 PostInstall as step 4 (after STIG step 3)
+- [Phase 28-04]: Wait-LabADReady gates ADMX/GPO operations on ADWS readiness with 120s timeout
+- [Phase 28-04]: DC PostInstall uses same ContainsKey guard pattern as STIG step; ADMX failure doesn't abort deployment
+- [Phase 28-04]: LabDCPostInstall.Tests.ps1 created with 5 integration tests for complete PostInstall flow
+- [Phase 28]: Complete Phase 28 implementation with 39 passing tests across 5 test files
 
 ### Pending Todos
 
@@ -65,14 +70,14 @@ None
 
 ### Blockers/Concerns
 
-None — Phase 28 Plan 03 complete. GPO templates and baseline creation logic implemented, ready for PostInstall integration in Plan 04.
+None — Phase 28 complete. ADMX/GPO auto-import fully integrated with DC PostInstall workflow.
 
 ## Session Continuity
 
 Last session: 2026-02-21
-Stopped at: Completed 28-03-PLAN.md (GPO JSON Templates and Baseline Creation)
+Stopped at: Completed Phase 28 (ADMX/GPO Auto-Import) - all 4 plans complete
 Resume file: None
 
 ---
 *State initialized: 2026-02-17 for v1.1 milestone*
-*Last updated: 2026-02-21 after Phase 28 Plan 03 completion*
+*Last updated: 2026-02-21 after Phase 28 completion*
