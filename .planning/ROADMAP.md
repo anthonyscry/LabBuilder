@@ -141,8 +141,8 @@ Full details: `.planning/milestones/v1.5-ROADMAP.md`
   5. Third-party ADMX bundles placed in the configured path are copied to the Central Store when ThirdPartyADMX entries are present in the config — the feature is disabled by default and no download-from-internet behavior occurs
 **Plans**: 4 plans
 - [x] 28-01-PLAN.md — ADMX config block and Get-LabADMXConfig helper (GPO-01, GPO-04)
-- [ ] 28-02-PLAN.md — Wait-LabADReady and Invoke-LabADMXImport core helpers (GPO-01, GPO-04)
-- [ ] 28-03-PLAN.md — GPO JSON templates and baseline creation (GPO-02, GPO-03)
+- [x] 28-02-PLAN.md — Wait-LabADReady and Invoke-LabADMXImport core helpers (GPO-01, GPO-04)
+- [x] 28-03-PLAN.md — GPO JSON templates and baseline creation (GPO-02, GPO-03)
 - [ ] 28-04-PLAN.md — PostInstall integration and final testing (GPO-01, GPO-02)
 
 ### Phase 29: Dashboard Enrichment
@@ -169,7 +169,7 @@ Full details: `.planning/milestones/v1.5-ROADMAP.md`
 | 22-25. Advanced Scenarios | v1.5 | 8/8 | Complete | 2026-02-21 |
 | 26. Lab TTL & Lifecycle Monitoring | 2/3 | Complete    | 2026-02-21 | - |
 | 27. PowerSTIG DSC Baselines | 5/5 | Complete    | 2026-02-21 | - |
-| 28. ADMX / GPO Auto-Import | 2/4 | In Progress|  | 2026-02-21 |
+| 28. ADMX / GPO Auto-Import | 3/4 | In Progress|  | 2026-02-21 |
 | 29. Dashboard Enrichment | v1.6 | 0/? | Not started | - |
 
 **Total shipped: 78 plans across 25 phases.**

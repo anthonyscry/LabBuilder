@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-02-20)
 ## Current Position
 
 Phase: 28 of 29 (ADMX / GPO Auto-Import)
-Plan: 2 of 4 (AD Readiness Gate and ADMX Import Core)
-Status: Plan 02 complete
-Last activity: 2026-02-21 — Phase 28 Plan 02 complete (Wait-LabADReady, Invoke-LabADMXImport, 16 tests passing)
+Plan: 3 of 4 (GPO JSON Templates and Baseline Creation)
+Status: Plan 03 complete
+Last activity: 2026-02-21 — Phase 28 Plan 03 complete (GPO templates, ConvertTo-DomainDN, GPO creation logic, 8 tests passing)
 
-Progress: [████░░░░░░] 32% (v1.6)
+Progress: [█████░░░░░] 40% (v1.6)
 
 ## Performance Metrics
 
@@ -53,6 +53,11 @@ Full log in PROJECT.md Key Decisions table. Key decisions for v1.6:
 - [Phase 28-02]: Invoke-LabADMXImport copies OS ADMX/ADML from DC PolicyDefinitions to SYSVOL Central Store via Invoke-Command on DC
 - [Phase 28-02]: Third-party ADMX bundles processed independently with per-bundle error isolation
 - [Phase 28-02]: PowerShell 5.1 compatibility: Where-Object { -not $_.PSIsContainer } instead of -File parameter for Get-ChildItem
+- [Phase 28-03]: Four baseline GPO JSON templates created (password, lockout, audit, AppLocker) in Templates/GPO/
+- [Phase 28-03]: ConvertTo-DomainDN helper converts FQDN to DN format (DC=domain,DC=tld) for New-GPLink targets
+- [Phase 28-03]: Invoke-LabADMXImport extended with GPO creation logic using New-GPO, Set-GPRegistryValue, New-GPLink
+- [Phase 28-03]: GPO creation gated by CreateBaselineGPO config flag; templates loaded from <repoRoot>/Templates/GPO/*.json
+- [Phase 28-03]: Per-template error isolation; GPOs counted in FilesImported metric
 
 ### Pending Todos
 
@@ -60,14 +65,14 @@ None
 
 ### Blockers/Concerns
 
-None — Phase 28 Plan 02 complete. AD readiness gate and ADMX import core implemented, ready for baseline GPO templates.
+None — Phase 28 Plan 03 complete. GPO templates and baseline creation logic implemented, ready for PostInstall integration in Plan 04.
 
 ## Session Continuity
 
 Last session: 2026-02-21
-Stopped at: Completed 28-02-PLAN.md (AD Readiness Gate and ADMX Import Core)
+Stopped at: Completed 28-03-PLAN.md (GPO JSON Templates and Baseline Creation)
 Resume file: None
 
 ---
 *State initialized: 2026-02-17 for v1.1 milestone*
-*Last updated: 2026-02-21 after Phase 28 Plan 02 completion*
+*Last updated: 2026-02-21 after Phase 28 Plan 03 completion*

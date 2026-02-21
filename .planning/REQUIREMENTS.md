@@ -25,8 +25,8 @@ Requirements for Lab Lifecycle & Security Automation milestone. Each maps to roa
 ### ADMX / GPO Management
 
 - [x] **GPO-01**: ADMX central store auto-populated on DC after domain promotion completes
-- [ ] **GPO-02**: Baseline GPO created and linked to domain from JSON template definitions
-- [ ] **GPO-03**: Pre-built security GPO templates shipped (password policy, account lockout, audit policy, AppLocker)
+- [x] **GPO-02**: Baseline GPO created and linked to domain from JSON template definitions
+- [x] **GPO-03**: Pre-built security GPO templates shipped (password policy, account lockout, audit policy, AppLocker)
 - [x] **GPO-04**: Third-party ADMX bundles importable via config setting with download + copy workflow
 
 ### Dashboard Enrichment
@@ -82,10 +82,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | STIG-04 | Phase 27 | Complete |
 | STIG-05 | Phase 27 | Complete |
 | STIG-06 | Phase 27 | Complete |
-| GPO-01 | Phase 28 | In Progress |
-| GPO-02 | Phase 28 | Pending |
-| GPO-03 | Phase 28 | Pending |
-| GPO-04 | Phase 28 | In Progress |
+| GPO-01 | Phase 28 | Complete |
+| GPO-02 | Phase 28 | Complete |
+| GPO-03 | Phase 28 | Complete |
+| GPO-04 | Phase 28 | Complete |
 | DASH-01 | Phase 29 | Pending |
 | DASH-02 | Phase 29 | Pending |
 | DASH-03 | Phase 29 | Pending |
