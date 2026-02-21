@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-20)
 
 **Core value:** Every function handles errors explicitly, surfaces clear diagnostics, and the codebase is modular enough that each piece can be tested and maintained independently.
-**Current focus:** v1.6 Lab Lifecycle & Security Automation — Phase 27: PowerSTIG DSC Baselines (gap closure complete)
+**Current focus:** v1.6 Lab Lifecycle & Security Automation — Phase 28: ADMX / GPO Auto-Import
 
 ## Current Position
 
-Phase: 27 of 29 (PowerSTIG DSC Baselines)
-Plan: 5 of 5 (complete — gap closure plan)
-Status: Phase complete (all gaps closed)
-Last activity: 2026-02-20 — Phase 27 Plan 05 complete (PowerSTIG DSC MOF compilation implemented, exceptions wired, stale duplicate removed, 25 tests passing)
+Phase: 28 of 29 (ADMX / GPO Auto-Import)
+Plan: 1 of 4 (ADMX Configuration Block and Config Reader)
+Status: Plan 01 complete
+Last activity: 2026-02-21 — Phase 28 Plan 01 complete (ADMX config block, Get-LabADMXConfig helper, 10 tests passing)
 
-Progress: [██░░░░░░░░] 20% (v1.6)
+Progress: [███░░░░░░░] 24% (v1.6)
 
 ## Performance Metrics
 
@@ -45,6 +45,10 @@ Full log in PROJECT.md Key Decisions table. Key decisions for v1.6:
 - [Phase 27]: Member server STIG placed in Build-LabFromSelection.ps1 Phase 11.5 — single location covers all current and future member server roles
 - [Phase 27-05]: DSC Configuration keyword placed inside here-string evaluated via Invoke-Expression on remote VM — avoids ParseException on Linux/non-DSC test hosts where Configuration keyword is unsupported
 - [Phase 27-05]: PowerSTIG exception hashtable uses ValueData='' skip marker pattern; compile+apply in single Invoke-Command -ComputerName session to avoid MOF file transfer
+- [Phase 28-01]: ADMX config block added to GlobalLabConfig after STIG block; Enabled=$true by default (ADMX import runs by default)
+- [Phase 28-01]: Get-LabADMXConfig uses ContainsKey guards matching Get-LabSTIGConfig pattern; ThirdPartyADMX defaults to @()
+- [Phase 28-01]: Comma-prefix operator (,@()) used to prevent PowerShell from unwrapping single-element hashtable arrays in PSCustomObject properties
+- [Phase 28-01]: Tests treat null and empty array equivalently due to PowerShell PSCustomObject empty array -> null conversion limitation
 
 ### Pending Todos
 
@@ -52,14 +56,14 @@ None
 
 ### Blockers/Concerns
 
-None — Phase 27 gap closure complete. PowerSTIG OsVersion strings should be validated against installed module's StigData/Processed/ on actual Windows VMs before first real deploy.
+None — Phase 28 Plan 01 complete. ADMX configuration foundation established, ready for AD readiness gate implementation.
 
 ## Session Continuity
 
-Last session: 2026-02-20
-Stopped at: Completed 27-05-PLAN.md (PowerSTIG DSC MOF compilation gap closure, 25 tests passing)
+Last session: 2026-02-21
+Stopped at: Completed 28-01-PLAN.md (ADMX Configuration Block and Config Reader)
 Resume file: None
 
 ---
 *State initialized: 2026-02-17 for v1.1 milestone*
-*Last updated: 2026-02-20 after Phase 27 Plan 05 gap closure completion*
+*Last updated: 2026-02-21 after Phase 28 Plan 01 completion*

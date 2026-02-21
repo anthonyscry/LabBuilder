@@ -82,10 +82,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | STIG-04 | Phase 27 | Complete |
 | STIG-05 | Phase 27 | Complete |
 | STIG-06 | Phase 27 | Complete |
-| GPO-01 | Phase 28 | Pending |
+| GPO-01 | Phase 28 | In Progress |
 | GPO-02 | Phase 28 | Pending |
 | GPO-03 | Phase 28 | Pending |
-| GPO-04 | Phase 28 | Pending |
+| GPO-04 | Phase 28 | In Progress |
 | DASH-01 | Phase 29 | Pending |
 | DASH-02 | Phase 29 | Pending |
 | DASH-03 | Phase 29 | Pending |
