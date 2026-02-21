@@ -103,7 +103,7 @@ function Invoke-LabADMXImport {
             # Copy all ADMX/ADML files from bundle to Central Store
             try {
                 # Copy ADMX files (root level)
-                $bundleAdmxFiles = Get-ChildItem -Path $bundlePath -Filter '*.admx' -File -ErrorAction SilentlyContinue
+                $bundleAdmxFiles = Get-ChildItem -Path $bundlePath -Filter '*.admx' -ErrorAction SilentlyContinue | Where-Object { -not $_.PSIsContainer }
                 foreach ($file in $bundleAdmxFiles) {
                     $destPath = Join-Path $centralStorePath $file.Name
                     Copy-Item -Path $file.FullName -Destination $destPath -Force
@@ -111,13 +111,13 @@ function Invoke-LabADMXImport {
                 }
 
                 # Copy ADML subdirectories
-                $bundleAdmlDirs = Get-ChildItem -Path $bundlePath -Directory -ErrorAction SilentlyContinue
+                $bundleAdmlDirs = Get-ChildItem -Path $bundlePath -ErrorAction SilentlyContinue | Where-Object { $_.PSIsContainer }
                 foreach ($dir in $bundleAdmlDirs) {
                     $destDir = Join-Path $centralStorePath $dir.Name
                     if (-not (Test-Path $destDir)) {
                         New-Item -ItemType Directory -Path $destDir -Force | Out-Null
                     }
-                    $admlFiles = Get-ChildItem -Path $dir.FullName -Filter '*.adml' -File -ErrorAction SilentlyContinue
+                    $admlFiles = Get-ChildItem -Path $dir.FullName -Filter '*.adml' -ErrorAction SilentlyContinue | Where-Object { -not $_.PSIsContainer }
                     foreach ($file in $admlFiles) {
                         Copy-Item -Path $file.FullName -Destination $destDir -Force
                         $filesImported++
